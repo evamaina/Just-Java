@@ -15,7 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.NumberFormat;
 
 /**
@@ -37,7 +40,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the increment button is clicked.
      */
     public void increment(View view) {
-        quantity = quantity * 4;
+        if (quantity == 100){
+            //show an error message as a toast
+            Toast.makeText(this,"You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+            //Exit this method early as there is nothing left to do
+            return;
+        }
+        quantity += 1;
         displayQuantity(quantity);
     }
 
@@ -45,7 +54,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the decrement button is clicked.
      */
     public void decrement(View view) {
-        quantity = quantity / 2;
+        if (quantity == 1) {
+            //show an error message as a toast
+            Toast.makeText(this,"You cannot have less than 1 coffee", Toast.LENGTH_SHORT).show();
+            //Exit this method early as there is nothing left to do
+            return;
+        }
+        quantity -= 1;
         displayQuantity(quantity);
     }
 
@@ -55,12 +70,21 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        // figure out if the user  wants whipped cream topping
         CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
-        CheckBox chocolateCheckbox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+
+        //figure out if the user wants chocolate cream topping
+        CheckBox chocolateCheckbox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate  = chocolateCheckbox.isChecked();
-        int price = calculatePrice();
-        displayMessage(createOrderSummary(price,hasWhippedCream,hasChocolate));
+
+        // add the name of the user
+        EditText nameEditText = (EditText) findViewById(R.id.name_field);
+        String name = nameEditText.getText().toString();
+
+
+        int price = calculatePrice(hasChocolate,hasWhippedCream);
+        displayMessage(createOrderSummary(price,hasWhippedCream,hasChocolate,name));
 
     }
 
@@ -68,19 +92,32 @@ public class MainActivity extends AppCompatActivity {
      * Calculates the price of the order.
      * @return total price
      */
-    private int calculatePrice() {
-        return quantity * 5;
+    private int calculatePrice(boolean addChocolate, boolean addWhippedCream) {
+        //price of one cup of coffee
+        int basePrice = 5;
+
+        // add 1$ if the user wants whipped cream
+        if (addWhippedCream){
+            basePrice = basePrice + 1;
+        }
+
+        // add 2$ if the user wants chocolate
+        if (addChocolate){
+            basePrice = basePrice + 2;
+        }
+        return quantity * basePrice;
 
     }
     /**
      * Summary of the order.
+     * @param name of the customer
      * @param price of the order
      * @param addWhippedCream is whether or not the user wants whipped cream topping
      * @param addChocolate is whether or not the user wants chocolate or not
      * @return text summary
      */
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
-        String priceMessage = "Name: Kaptain Kunal";
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
+        String priceMessage ="Name: " + name;
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nAdd whipped cream " + addWhippedCream;
         priceMessage +="\nAdd chocolate " + addChocolate;
