@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-        displayMessage(priceMessage);
+
 
     }
 
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
         priceMessage +="\nAdd chocolate " + addChocolate;
         priceMessage += "\nTotal: $" + price ;
         priceMessage += "\nThank You!";
-        displayMessage(priceMessage);
         return priceMessage;
 
     }
@@ -150,11 +149,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
+
 }

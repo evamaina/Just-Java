@@ -95,24 +95,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ORDER SUMMARY"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp"
-            android:textAllCaps="true"
-            android:textColor="#008000"/>
-
-        <TextView
-            android:id="@+id/order_summary_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$495"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp"
-            android:textColor="#008000"/>
-
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
