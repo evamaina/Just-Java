@@ -73,7 +73,8 @@
                 android:layout_width="48dp"
                 android:text="@string/decrement"
                 android:onClick="decrement"
-                android:background="#3F51B5"/>
+                android:background="#3F51B5"
+                android:textColor="#ffffff"/>
 
 
             <TextView
@@ -91,7 +92,8 @@
                 android:layout_width="48dp"
                 android:text="@string/increment"
                 android:onClick="increment"
-                android:background="#3F51B5"/>
+                android:background="#3F51B5"
+                android:textColor="#ffffff"/>
 
         </LinearLayout>
 
@@ -101,7 +103,8 @@
             android:text="@string/order"
             android:layout_marginTop="16dp"
             android:onClick="submitOrder"
-            android:background="#3F51B5"/>
+            android:background="#3F51B5"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
 
