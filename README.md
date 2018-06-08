@@ -3,7 +3,8 @@
 # Just Java App
 
 **This app displays an order form for coffee.The main functions of the app are:**
-*Calculate the price
+
+* Calculate the price
 
 * Display the order summary on the screen
 
@@ -12,7 +13,7 @@
 * Send the order summary in the email body
 
 ## Pre-requisites
-1. Android SDK v24
+1. Android SDK v27
 
 2. Android Build Tools v24.0.2
 
